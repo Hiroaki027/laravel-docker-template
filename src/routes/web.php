@@ -16,5 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/todo', function () {
-    echo 'Hello World!';
+    echo 'Hello World!'; //HTTPメソッドのGET 第一引数がURI(Uniform Resource Identifier) 第二引数が実行したい処理
 });
+
+Route::get('/todo', 'TodoController@index');
