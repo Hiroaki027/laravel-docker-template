@@ -33,6 +33,11 @@
                 ToDo一覧
               </div>
               <div class="list-group list-group-flush">
+                @foreach ($todos as $todo)
+                  <div class="d-flex align-items-center p-2">
+                    <span class="col-9">{{ $todo->content }}</span> {{-- {{}}の意味と{!! !!}の違いはHTMLエスケープ処理が自動で行われるかどうか --}}
+                  </div>
+                @endforeach
               </div>
             </div>
           </div>
