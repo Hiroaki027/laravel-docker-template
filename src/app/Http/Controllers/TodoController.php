@@ -20,4 +20,15 @@ class TodoController extends Controller
     {
         return view('todo.create');
     }
+
+    public function store(Request $request) //(class名 $~~) メソッドインジェクション = classを自動でインスタンス化し$に代入
+    {
+        $content = $request->input('content'); //input('name属性')
+
+        $todo = new Todo();
+        $todo->content = $content; //Todoインスタンスのカラム名のプロパティに保存したい値を代入
+        $todo->save(); //data新規作成
+
+        return redirect()->route('todo.index'); //リダイレクト先を名前付きルートのtodo.indexを指定
+    }
 }
