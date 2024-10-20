@@ -31,4 +31,12 @@ class TodoController extends Controller
 
         return redirect()->route('todo.index'); //リダイレクト先を名前付きルートのtodo.indexを指定
     }
+
+    public function show($id)
+    {
+        $model = new Todo();
+        $todo = $model->find($id);
+
+        return view('todo.show', ['todo' => $todo]);
+    }
 }
