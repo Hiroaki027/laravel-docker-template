@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use App\Http\Requests\TodoRequest;
 use App\Todo;
 
 class TodoController extends Controller
@@ -26,13 +25,11 @@ class TodoController extends Controller
         return view('todo.create');
     }
 
-    public function store(Request $request) //(class名 $~~) メソッドインジェクション = classを自動でインスタンス化し$に代入
+    public function store(TodoRequest $request) //(class名 $~~) メソッドインジェクション = classを自動でインスタンス化し$に代入
     {
         $inputs = $request->all();
-
         $this->todo->fill($inputs);
         $this->todo->save(); //data新規作成
-
         return redirect()->route('todo.index'); //リダイレクト先を名前付きルートのtodo.indexを指定
     }
 
@@ -47,13 +44,14 @@ class TodoController extends Controller
         $todo = $this->todo->find($id);
         return view('todo.edit', ['todo' => $todo]);
     }
-    public function update(Request $request, $id) // 第1引数: リクエスト情報の取得　第2引数: ルートパラメータの取得
+
+    public function update(TodoRequest $request, $id) // 第1引数: リクエスト情報の取得　第2引数: ルートパラメータの取得
     {
         // TODO: リクエストされた値を取得
         $inputs = $request->all();
-
         $todo = $this->todo->find($id);
-        $todo->fill($inputs)->save();
+        $todo->fill($inputs);
+        $todo->save();
         return redirect()->route('todo.show', $todo->id);
     }
 }
