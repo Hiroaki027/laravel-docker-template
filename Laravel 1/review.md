@@ -7,7 +7,7 @@
 つまり、モデル内のレコード全てを取得しています。
 
 ### Todoモデルのallメソッドの返り値は何か
-* `Illuminate\Database\Eloquent\Collectionku`クラスのインスタンスです。
+* `Illuminate\Database\Eloquent\Collection`クラスのインスタンスです。
 仕様として、`Illuminate\Support\Collection`クラスを拡張している為
 上記のインスタンスでもallメソッドが利用できます。
 
@@ -39,7 +39,6 @@
     {
         $todo = new Todo();
         $todos = $todo->all();
-
         return view('todo.index', ['todos' => $todos]);
     }
 ```

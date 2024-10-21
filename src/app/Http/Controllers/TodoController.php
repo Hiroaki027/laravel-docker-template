@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers; //namespaceはプロジェクトルートから見ての相対パス、所謂詳しい住所的なもの
+                                //namespaceのおかげで、大阪の田中さんか東京の田中さんを区別している感じ
 
 use App\Http\Requests\TodoRequest;
 use App\Todo;
@@ -9,7 +10,7 @@ class TodoController extends Controller
 {
     private $todo;
 
-    public function __construct(Todo $todo)
+    public function __construct(Todo $todo) //Todoクラスをインスタンス化したものを$todoに代入
     {
         $this->todo = $todo;
     }
@@ -36,7 +37,7 @@ class TodoController extends Controller
     public function show($id)
     {
         $todo = $this->todo->find($id);
-        return view('todo.show', ['todo' => $todo]);
+        return view('todo.show', ['todo' => $todo]); //viewメソッドの第二引数で[show.blade.php内に渡す'変数名' => showメソッドの$todo]
     }
 
     public function edit($id)
